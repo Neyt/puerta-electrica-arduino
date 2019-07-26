@@ -61,14 +61,18 @@ void setup()
           lcd.setBacklightPin(BACKLIGHT_PIN,POSITIVE);
           lcd.setBacklight(HIGH); //Lighting backlight
           lcd.home ();
-          lcd.print("oprima '*'");      //What's written on the LCD you can change
+          lcd.clear();
+          lcd.print("oprima '*' e");   //What's written on the LCD you can change
+          lcd.setCursor(0,1);
+          lcd.print("ingrese el codigo");
+          delay(2000);
           
           pinMode(Solenoid,OUTPUT);
           pinMode(O_Button,INPUT);
                       
           //for(i=0 ; i<sizeof(code);i++){        //When you upload the code the first time keep it commented
-           //EEPROM.get(i, code[i]);             //Upload the code and change it to store it in the EEPROM
-           //}                                  //Then uncomment this for loop and reupload the code (It's done only once)
+          //EEPROM.get(i, code[i]);             //Upload the code and change it to store it in the EEPROM
+          //}                                  //Then uncomment this for loop and reupload the code (It's done only once)
 
          }
 
@@ -90,7 +94,10 @@ void loop()
                   }
             delay(2000);
             lcd.clear();
-            lcd.print("oprima '*' otra vez");             //Return to standby mode it's the message do display when waiting
+            lcd.print("oprima '*' e");             //Return to standby mode it's the message do display when waiting
+            lcd.setCursor(0,1);
+            lcd.print("ingrese el codigo");
+            delay(2000);
         }
 
      if(keypressed == '#'){                  //To change the code it calls the changecode function
@@ -133,15 +140,15 @@ void GetCode(){                  //Getting code sequence
 
 void ChangeCode(){                      //Change code sequence
       lcd.clear();
-      lcd.print("Changing code");
+      lcd.print("Cambie codigo");
       delay(1000);
       lcd.clear();
-      lcd.print("Enter old code");
+      lcd.print("codigo viejo");
       GetCode();                      //verify the old code first so you can change it
       
             if(a==sizeof(code)){      //again verifying the a value
             lcd.clear();
-            lcd.print("Changing code");
+            lcd.print("Cambie el codigo");
             GetNewCode1();            //Get the new code
             GetNewCode2();            //Get the new code again to confirm it
             s=0;
@@ -157,14 +164,16 @@ void ChangeCode(){                      //Change code sequence
                   
                   }
                   lcd.clear();
-                  lcd.print("Code Changed");
+                  lcd.print("Ingrese el nuevo");
+                  lcd.setCursor(0,1);
+                  lcd.print("codigo");
                   delay(2000);
                   }
                   else{                         //In case the new codes aren't matching
                   lcd.clear();
-                  lcd.print("Codes are not");
+                  lcd.print("Codidgos no");
                   lcd.setCursor(0,1);
-                  lcd.print("matching !!");
+                  lcd.print("coinciden :(");
                   delay(2000);
                   }
             
@@ -172,8 +181,8 @@ void ChangeCode(){                      //Change code sequence
           
           else{                     //In case the old code is wrong you can't change it
           lcd.clear();
-          lcd.print("Wrong");
-          delay(2000);
+          lcd.print("Error de clave antigua");
+          delay(3000);
           }
 }
 
@@ -228,10 +237,10 @@ void GetNewCode2(){                         //This is exactly like the GetNewCod
 keypressed = NO_KEY;
 }
 
-void OpenDoor(){             //Lock opening function open for 3s
+void OpenDoor(){             //Lock opening function open for 10s
   lcd.clear();
-  lcd.print("Welcome");       //With a message printed
+  lcd.print("Bienvenid@");       //With a message printed
   digitalWrite(Solenoid,HIGH);
-  delay(3000);
+  delay(10000);
   digitalWrite(Solenoid,LOW);
 }
