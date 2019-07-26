@@ -1,3 +1,9 @@
+
+/*El codigo original y videos estan ubicados en https://www.hackster.io/SurtrTech/keypad-door-lock-with-changeable-code-468b15
+Lo unico que tuve que hacer es cambiar el codigo para actulizarlos y poner partes de la pantalla en español
+*/
+
+
 /* This code works with 4x4 Keypad Matrix, LCD ic, IRF510N transistor and a push button
  * It's a lock where the transistor drives a solenoid lock you can open either with correct code
  * or by the push button from inside
